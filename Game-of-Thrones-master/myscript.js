@@ -1,5 +1,4 @@
-    <script type=text/javascript>
-    
+   
     $(document).ready(function() {
         $('img').click(function() {
             var picId = $(this).attr('id');
@@ -15,4 +14,4 @@
             }, "json")
         })
     });    
-    </script>
+ 
