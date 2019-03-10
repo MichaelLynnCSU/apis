@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    
+}
+
+img {
+    margin: 10px;
+}
+
+.details {
+    font-size: 16pt;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+#houseDetails {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid gray;
+}
+

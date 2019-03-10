@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="GameofThrones.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type=text/javascript>
+    
+    $(document).ready(function() {
+        $('img').click(function() {
+            var picId = $(this).attr('id');
+            $.get("https://anapioficeandfire.com/api/houses/"+picId+"/", function(res) {
+
+                var name = res.name;
+                var words = res.words;
+                var titles = '';
+                for (var i = 0; i < res.titles.length; i++) {
+                    titles += res.titles[i];
+                }
+                var output = "<div class='details'><p>Name: "+name+"</p><p>Words: "+words+"</p><p>Titles: "+titles+"</p></div>";
+
+                $('#houseDetails').html(output);
+
+            }, "json")
+        })
+    });    
+
+    </script>
+    <title>Game of Thrones!</title>
+</head>
+<body>
+    <div id="content">
+        <div id="images">
+            <img id="16" src="baratheon.png" alt="Baratheon" width="300px">
+            <img id="229" src="lannister.jpg" alt="Lannister" width="300px" height="168.8px">
+            <img id="362" src="stark.jpg" alt="Stark" width="300px">
+            <img id="378" src="Targaryen.jpg" alt="Targaryen" width="300px">
+        </div>
+        <div id="houseDetails">
+            <h1>Click the image for house details!</h1>
+        </div>
+    </div>
+</body>
+</html>
+
