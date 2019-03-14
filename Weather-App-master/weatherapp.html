@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="weatherapp.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-     <script src="myscript.js"></script>
     <title>Weather Forecast</title>
 </head>
 <body>
@@ -17,3 +15,49 @@
 </body>
 </html>
 
+
+<script>
+
+function ajaxCall(city){
+    console.log("Check p2 status", city)
+    new Promise( function(resolve){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&&appid=57c66dedc00628f7fe46f13df2361f6b',
+            success: function(res, status) {
+                if(status == "success"){
+                    console.log("Check p2 status", res["coord"].lon, status)
+                    var location = res["coord"].lon
+                    resolve(location)
+                }
+            }        
+        })
+    }).then(function(location){
+         print(location)   
+    })    
+}
+
+function print(location) {
+    console.log("Check p2_subp1 status", location)
+    $('#content').append(location)    
+}
+
+async function getLoc() {
+    var city = $('input').val()
+    console.log("Check p1 status", city)
+    var result = await city
+    return result
+}
+
+
+$(document).ready(function() {
+    $('form').submit(function() {
+            getLoc().then(function(city){
+                ajaxCall(city)
+        })
+    })
+        // don't forget to return false so the page doesn't refresh
+        return false;
+});   
+</Script>
